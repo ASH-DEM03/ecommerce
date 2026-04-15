@@ -30,8 +30,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         // Public endpoints — no token needed
                         .requestMatchers("/api/auth/**").permitAll()
-                        .requestMatchers("/api/products").permitAll()
-                        .requestMatchers("/api/products/**").permitAll()
+                        .requestMatchers("/products").permitAll()
+                        .requestMatchers("/products/**").permitAll()
                         .requestMatchers("/api/categories/**").permitAll()
                         .requestMatchers("/api/brands/**").permitAll()
                         // Everything else requires a valid token

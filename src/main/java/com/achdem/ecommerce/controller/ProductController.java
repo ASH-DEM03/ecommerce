@@ -6,6 +6,7 @@ import com.achdem.ecommerce.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/products")
@@ -15,8 +16,14 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping
-    public List<ProductDTO> getAll() {
-        return productService.getAll();
+    public Map<String, Object> getProducts(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(required = false) Double minPrice,
+            @RequestParam(required = false) Double maxPrice,
+            @RequestParam(required = false) Long brandId
+    ) {
+        return productService.getProducts(page, size, minPrice, maxPrice, brandId);
     }
 
     @GetMapping("/{id}")
